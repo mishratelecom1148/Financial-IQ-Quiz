@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial IQ Test</title>
+    <style>
+        /* Add your CSS styles here to customize the appearance of the page */
+    </style>
+</head>
+<body>
+    <h1>Financial IQ Test</h1>
+    <p>Answer the following questions to assess your financial knowledge and behavior.</p>
+
+    <form id="financialIqForm">
+        <!-- Question 1 -->
+        <label for="budget">1. Do you have a monthly budget that you stick to?</label><br>
+        <input type="radio" name="budget" value="a"> (a) Yes, I have a detailed budget and track my expenses.<br>
+        <input type="radio" name="budget" value="b"> (b) I have a rough idea of my income and expenses.<br>
+        <input type="radio" name="budget" value="c"> (c) No, I don't budget my money.<br><br>
+
+        <!-- Add similar questions for the other aspects of financial IQ -->
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="result">
+        <!-- The result will be displayed here -->
+    </div>
+
+    <script>
+        const form = document.getElementById("financialIqForm");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Calculate the financial IQ score based on user's answers
+            const answers = new FormData(form);
+            let score = 0;
+
+            // Add scores for each answer (customize based on your scoring system)
+            score += calculateScore(answers.get("budget"), {
+                a: 3,
+                b: 2,
+                c: 1,
+            });
+
+            // Add scores for other questions similarly
+
+            // Calculate the percentage based on the total possible score
+            const maxScore = 3 * /* number of questions */; // Adjust this based on the number of questions
+            const percentage = (score / maxScore) * 100;
+
+            // Display the result
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = `Your Financial IQ: ${percentage.toFixed(2)}%`;
+
+            // Provide a tip based on the result
+            if (percentage >= 70) {
+                resultDiv.innerHTML += "<br>Congratulations! You have a strong financial IQ.";
+            } else {
+                resultDiv.innerHTML += "<br>You may want to focus on improving your financial knowledge and habits.";
+            }
+        });
+
+        function calculateScore(answer, scoring) {
+            return scoring[answer] || 0;
+        }
+    </script>
+</body>
+</html>
